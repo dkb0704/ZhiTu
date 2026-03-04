@@ -1,0 +1,10 @@
+spring:
+  config:
+    name: ZhiTu-app
+  profiles:
+    active: dev
+
+# JWT 配置（默认值，可被 profile 覆盖）
+jwt:
+  secret: ZhiTuJwtSecretKey256BitsPleaseChangeInProd!!
+  expire-seconds: 86400

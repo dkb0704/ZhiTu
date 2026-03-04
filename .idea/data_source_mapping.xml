@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/docs/dev-ops/mysql/sql/job_position_create.sql" value="4aaa21d0-416a-4e92-aefa-18e1a37e7034" />
+    <file url="file://$PROJECT_DIR$/docs/dev-ops/mysql/sql/user_split_refactor.sql" value="4aaa21d0-416a-4e92-aefa-18e1a37e7034" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/4aaa21d0-416a-4e92-aefa-18e1a37e7034/console.sql" value="4aaa21d0-416a-4e92-aefa-18e1a37e7034" />
+  </component>
+</project>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dk.infrastructure.dao.IUserProfileDao">
+
+    <resultMap id="ProfileMap" type="com.dk.infrastructure.dao.po.UserProfilePO">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="major" property="major"/>
+        <result column="grade" property="grade"/>
+        <result column="base_cities" property="baseCities"/>
+        <result column="target_position" property="targetPosition"/>
+        <result column="gpa" property="gpa"/>
+        <result column="political_status" property="politicalStatus"/>
+        <result column="honors" property="honors"/>
+        <result column="projects" property="projects"/>
+        <result column="campus" property="campus"/>
+        <result column="skills" property="skills"/>
+        <result column="languages" property="languages"/>
+        <result column="self_evaluation" property="selfEvaluation"/>
+        <result column="internships" property="internships"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.dk.infrastructure.dao.po.UserProfilePO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_profile (user_id, major, grade, base_cities, target_position, gpa, political_status,
+            honors, projects, campus, skills, languages, self_evaluation, internships, create_time, update_time)
+        VALUES (#{userId}, #{major}, #{grade}, #{baseCities}, #{targetPosition}, #{gpa}, #{politicalStatus},
+            #{honors}, #{projects}, #{campus}, #{skills}, #{languages}, #{selfEvaluation}, #{internships},
+            #{createTime}, #{updateTime})
+    </insert>
+
+    <update id="updateByUserId" parameterType="com.dk.infrastructure.dao.po.UserProfilePO">
+        UPDATE user_profile SET
+            major = #{major},
+            grade = #{grade},
+            base_cities = #{baseCities},
+            target_position = #{targetPosition},
+            gpa = #{gpa},
+            political_status = #{politicalStatus},
+            honors = #{honors},
+            projects = #{projects},
+            campus = #{campus},
+            skills = #{skills},
+            languages = #{languages},
+            self_evaluation = #{selfEvaluation},
+            internships = #{internships},
+            update_time = #{updateTime}
+        WHERE user_id = #{userId}
+    </update>
+
+    <select id="selectByUserId" parameterType="java.lang.Long" resultMap="ProfileMap">
+        SELECT * FROM user_profile WHERE user_id = #{userId} LIMIT 1
+    </select>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dk.infrastructure.dao.IUserPreferenceDao">
+
+    <resultMap id="PreferenceMap" type="com.dk.infrastructure.dao.po.UserPreferencePO">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="job_preferences" property="jobPreferences"/>
+        <result column="soft_skills" property="softSkills"/>
+        <result column="mbti" property="mbti"/>
+        <result column="holland" property="holland"/>
+        <result column="big_five" property="bigFive"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.dk.infrastructure.dao.po.UserPreferencePO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_preference (user_id, job_preferences, soft_skills, mbti, holland, big_five, create_time, update_time)
+        VALUES (#{userId}, #{jobPreferences}, #{softSkills}, #{mbti}, #{holland}, #{bigFive}, #{createTime}, #{updateTime})
+    </insert>
+
+    <update id="updateByUserId" parameterType="com.dk.infrastructure.dao.po.UserPreferencePO">
+        UPDATE user_preference SET
+            job_preferences = #{jobPreferences},
+            soft_skills = #{softSkills},
+            mbti = #{mbti},
+            holland = #{holland},
+            big_five = #{bigFive},
+            update_time = #{updateTime}
+        WHERE user_id = #{userId}
+    </update>
+
+    <select id="selectByUserId" parameterType="java.lang.Long" resultMap="PreferenceMap">
+        SELECT * FROM user_preference WHERE user_id = #{userId} LIMIT 1
+    </select>
+
+</mapper>

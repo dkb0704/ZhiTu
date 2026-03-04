@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dk.infrastructure.dao.IJobPositionDao">
+
+    <resultMap id="JobMap" type="com.dk.infrastructure.dao.po.JobPositionPO">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="location" property="location"/>
+        <result column="salary_range" property="salaryRange"/>
+        <result column="salary_min" property="salaryMin"/>
+        <result column="salary_max" property="salaryMax"/>
+        <result column="company_name" property="companyName"/>
+        <result column="industry" property="industry"/>
+        <result column="company_size" property="companySize"/>
+        <result column="company_type" property="companyType"/>
+        <result column="job_code" property="jobCode"/>
+        <result column="description" property="description"/>
+        <result column="update_date" property="updateDate"/>
+        <result column="company_desc" property="companyDesc"/>
+        <result column="source_url" property="sourceUrl"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <select id="selectById" parameterType="java.lang.Long" resultMap="JobMap">
+        SELECT * FROM job_position WHERE id = #{id} LIMIT 1
+    </select>
+
+    <!-- 通用筛选条件片段 -->
+    <sql id="whereCondition">
+        <where>
+            <if test="title != null and title != ''">
+                AND title LIKE CONCAT('%', #{title}, '%')
+            </if>
+            <if test="location != null and location != ''">
+                AND location LIKE CONCAT('%', #{location}, '%')
+            </if>
+            <if test="industry != null and industry != ''">
+                AND industry LIKE CONCAT('%', #{industry}, '%')
+            </if>
+            <if test="salaryMin != null">
+                AND salary_max &gt;= #{salaryMin}
+            </if>
+            <if test="salaryMax != null">
+                AND salary_min &lt;= #{salaryMax}
+            </if>
+        </where>
+    </sql>
+
+    <select id="selectByCondition" resultMap="JobMap">
+        SELECT * FROM job_position
+        <include refid="whereCondition"/>
+        ORDER BY id DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="countByCondition" resultType="int">
+        SELECT COUNT(*) FROM job_position
+        <include refid="whereCondition"/>
+    </select>
+
+</mapper>
