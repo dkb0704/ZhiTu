@@ -6,6 +6,8 @@
         <id column="id" property="id"/>
         <result column="user_id" property="userId"/>
         <result column="major" property="major"/>
+        <result column="education" property="education"/>
+        <result column="education_background" property="educationBackground"/>
         <result column="grade" property="grade"/>
         <result column="base_cities" property="baseCities"/>
         <result column="target_position" property="targetPosition"/>
@@ -15,7 +17,6 @@
         <result column="projects" property="projects"/>
         <result column="campus" property="campus"/>
         <result column="skills" property="skills"/>
-        <result column="languages" property="languages"/>
         <result column="self_evaluation" property="selfEvaluation"/>
         <result column="internships" property="internships"/>
         <result column="create_time" property="createTime"/>
@@ -23,16 +24,18 @@
     </resultMap>
 
     <insert id="insert" parameterType="com.dk.infrastructure.dao.po.UserProfilePO" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user_profile (user_id, major, grade, base_cities, target_position, gpa, political_status,
-            honors, projects, campus, skills, languages, self_evaluation, internships, create_time, update_time)
-        VALUES (#{userId}, #{major}, #{grade}, #{baseCities}, #{targetPosition}, #{gpa}, #{politicalStatus},
-            #{honors}, #{projects}, #{campus}, #{skills}, #{languages}, #{selfEvaluation}, #{internships},
+        INSERT INTO user_profile (user_id, major, education, education_background, grade, base_cities, target_position, gpa, political_status,
+            honors, projects, campus, skills, self_evaluation, internships, create_time, update_time)
+        VALUES (#{userId}, #{major}, #{education}, #{educationBackground}, #{grade}, #{baseCities}, #{targetPosition}, #{gpa}, #{politicalStatus},
+            #{honors}, #{projects}, #{campus}, #{skills}, #{selfEvaluation}, #{internships},
             #{createTime}, #{updateTime})
     </insert>
 
     <update id="updateByUserId" parameterType="com.dk.infrastructure.dao.po.UserProfilePO">
         UPDATE user_profile SET
             major = #{major},
+            education = #{education},
+            education_background = #{educationBackground},
             grade = #{grade},
             base_cities = #{baseCities},
             target_position = #{targetPosition},
@@ -42,7 +45,6 @@
             projects = #{projects},
             campus = #{campus},
             skills = #{skills},
-            languages = #{languages},
             self_evaluation = #{selfEvaluation},
             internships = #{internships},
             update_time = #{updateTime}

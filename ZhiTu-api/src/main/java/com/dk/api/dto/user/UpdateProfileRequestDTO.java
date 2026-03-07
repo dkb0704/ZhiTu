@@ -16,6 +16,10 @@ public class UpdateProfileRequestDTO {
 
     /** 专业 */
     private String major;
+    /** 学历（最高学历，如 专科/本科/硕士/博士） */
+    private String education;
+    /** 教育背景 JSON 数组，如 [{"degree":"本科","school":"XX大学"},{"degree":"硕士","school":"YY大学"}] */
+    private String educationBackground;
     /** 年级 */
     private String grade;
     /** 意向城市 JSON 数组 */
@@ -34,8 +38,7 @@ public class UpdateProfileRequestDTO {
     private String campus;
     /** 技能 JSON */
     private String skills;
-    /** 语言能力 JSON */
-    private String languages;
+
     /** 自我评价 */
     private String selfEvaluation;
     /** 实习经历 JSON */

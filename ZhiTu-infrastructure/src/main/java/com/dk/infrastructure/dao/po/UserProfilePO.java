@@ -22,6 +22,10 @@ public class UserProfilePO {
     private Long userId;
     /** 专业 */
     private String major;
+    /** 学历（最高学历） */
+    private String education;
+    /** 教育背景 JSON */
+    private String educationBackground;
     /** 年级 */
     private String grade;
     /** 意向城市 JSON */
@@ -40,8 +44,7 @@ public class UserProfilePO {
     private String campus;
     /** 技能 JSON */
     private String skills;
-    /** 语言能力 JSON */
-    private String languages;
+
     /** 自我评价 */
     private String selfEvaluation;
     /** 实习经历 JSON */

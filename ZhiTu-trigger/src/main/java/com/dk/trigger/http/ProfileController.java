@@ -36,6 +36,8 @@ public class ProfileController {
         Long userId = parseUserId(token);
         UserProfileEntity data = UserProfileEntity.builder()
                 .major(request.getMajor())
+                .education(request.getEducation())
+                .educationBackground(request.getEducationBackground())
                 .grade(request.getGrade())
                 .baseCities(request.getBaseCities())
                 .targetPosition(request.getTargetPosition())
@@ -45,7 +47,6 @@ public class ProfileController {
                 .projects(request.getProjects())
                 .campus(request.getCampus())
                 .skills(request.getSkills())
-                .languages(request.getLanguages())
                 .selfEvaluation(request.getSelfEvaluation())
                 .internships(request.getInternships())
                 .build();
