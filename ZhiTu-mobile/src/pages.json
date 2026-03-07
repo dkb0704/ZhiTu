@@ -8,13 +8,172 @@
 					"bounce": "none"
 				}
 			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/register/register",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/resume/upload",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/resume/create",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/resume/create2",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/resume/create3",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/resume/create4",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/map/index",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/job/index",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/test/index",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/my/index",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/preference/job-preference",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/preference/job-preference-2",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/preference/job-preference-3",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/preference/personality",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "ZhiTu",
-		"navigationBarBackgroundColor": "#F7FBFA",
-		"backgroundColor": "#F7FBFA"
+		"navigationBarBackgroundColor": "#F7FBFA"
+	},
+	"tabBar": {
+		"custom": true,
+		"color": "#999999",
+		"selectedColor": "#81B898",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "white",
+		"list": [
+			{
+				"pagePath": "pages/map/index",
+				"text": "图谱"
+			},
+			{
+				"pagePath": "pages/job/index",
+				"text": "岗位"
+			},
+			{
+				"pagePath": "pages/test/index",
+				"text": "测试"
+			},
+			{
+				"pagePath": "pages/my/index",
+				"text": "我的"
+			}
+		]
 	},
 	"easycom": {
 		"custom": {

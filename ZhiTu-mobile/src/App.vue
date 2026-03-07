@@ -3,7 +3,12 @@
 	@import "uview-plus/index.scss";
 	
 	page {
+		/* background-color: #F7FBFA; */
+		background-image: url("@/static/back.png");
+		background-size: cover;
 		background-color: #F7FBFA;
+		background-position: center;
+		background-repeat: no-repeat;
 		font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
 	}
 </style>
