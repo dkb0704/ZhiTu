@@ -46,3 +46,10 @@ logging:
 jwt:
   secret: ZhiTuJwtSecretKey256BitsPleaseChangeInProd!!
   expire-seconds: 86400
+
+# LLM 推理服务（本地部署 / 云端 API，OpenAI 兼容格式）
+llm:
+  endpoint: http://localhost:8081/v1/chat/completions
+  api-key:
+  model: qwen
+  prompt-base-path: prompts/llm

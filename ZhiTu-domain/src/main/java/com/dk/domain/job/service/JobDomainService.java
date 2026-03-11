@@ -1,11 +1,14 @@
 package com.dk.domain.job.service;
 
+import com.dk.domain.job.adapter.repository.ICareerMapRepository;
 import com.dk.domain.job.adapter.repository.IJobPositionRepository;
+import com.dk.domain.job.model.entity.CareerTrackEntity;
 import com.dk.domain.job.model.entity.JobPositionEntity;
 import com.dk.types.exception.AppException;
 import com.dk.types.enums.ResponseCode;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,8 +19,18 @@ public class JobDomainService {
 
     private final IJobPositionRepository jobPositionRepository;
 
+    @Resource
+    private ICareerMapRepository careerMapRepository;
+
     public JobDomainService(IJobPositionRepository jobPositionRepository) {
         this.jobPositionRepository = jobPositionRepository;
+    }
+
+    /**
+     * 岗位图谱：职业线 + 节点 + 转岗关系（来自 career_track / career_node / career_transfer_option）。
+     */
+    public List<CareerTrackEntity> getCareerMap() {
+        return careerMapRepository.getFullMap();
     }
 
     /**

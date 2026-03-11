@@ -10,16 +10,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.regex.Pattern;
 
 /**
  * 用户领域服务：注册、登录、资料管理、偏好管理、职业生涯管理。
  */
 @Service
 public class UserDomainService {
-
-    private static final Pattern PHONE_PATTERN = Pattern.compile("^1[3-9]\\d{9}$");
-    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
 
     private final IUserRepository userRepository;
     private final IUserProfileRepository profileRepository;
@@ -53,12 +49,7 @@ public class UserDomainService {
         if (!hasPhone && !hasEmail) {
             throw new AppException(AuthErrorCode.INVALID_ACCOUNT.getCode(), AuthErrorCode.INVALID_ACCOUNT.getInfo());
         }
-        if (hasPhone && !PHONE_PATTERN.matcher(phone.trim()).matches()) {
-            throw new AppException(AuthErrorCode.INVALID_ACCOUNT.getCode(), "手机号格式不正确");
-        }
-        if (hasEmail && !EMAIL_PATTERN.matcher(email.trim()).matches()) {
-            throw new AppException(AuthErrorCode.INVALID_ACCOUNT.getCode(), "邮箱格式不正确");
-        }
+
         if (hasPhone && userRepository.findByPhone(phone.trim()) != null) {
             throw new AppException(AuthErrorCode.USER_ALREADY_EXISTS.getCode(), "该手机号已注册");
         }
@@ -82,18 +73,16 @@ public class UserDomainService {
     // ===== 登录 =====
 
     /**
-     * 登录：account 为手机号或邮箱，校验密码后返回用户实体。
+     * 登录：account 为手机号或邮箱，直接匹配两个字段，格式校验由前端负责。
      */
     public UserEntity login(String account, String password) {
         if (StringUtils.isBlank(account) || StringUtils.isBlank(password)) {
             throw new AppException(AuthErrorCode.LOGIN_FAIL.getCode(), AuthErrorCode.LOGIN_FAIL.getInfo());
         }
         String trimAccount = account.trim();
-        UserEntity user = null;
-        if (PHONE_PATTERN.matcher(trimAccount).matches()) {
-            user = userRepository.findByPhone(trimAccount);
-        }
-        if (user == null && EMAIL_PATTERN.matcher(trimAccount).matches()) {
+        // 直接尝试手机号字段，再尝试邮箱字段，不做格式预校验
+        UserEntity user = userRepository.findByPhone(trimAccount);
+        if (user == null) {
             user = userRepository.findByEmail(trimAccount);
         }
         if (user == null) {

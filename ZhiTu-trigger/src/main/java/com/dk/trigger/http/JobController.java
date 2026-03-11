@@ -2,6 +2,7 @@ package com.dk.trigger.http;
 
 import com.dk.api.dto.job.JobSearchRequestDTO;
 import com.dk.api.response.Response;
+import com.dk.domain.job.model.entity.CareerTrackEntity;
 import com.dk.domain.job.model.entity.JobPositionEntity;
 import com.dk.domain.job.service.JobDomainService;
 import org.springframework.web.bind.annotation.*;
@@ -52,5 +53,13 @@ public class JobController {
     @GetMapping("/{id}")
     public Response<JobPositionEntity> getJobDetail(@PathVariable Long id) {
         return Response.success(jobDomainService.getJobDetail(id));
+    }
+
+    /**
+     * 岗位图谱：职业线 + 节点 + 转岗关系（升岗/转岗数据来自 DB，可由 AI 建议后落库）。
+     */
+    @GetMapping("/career-map")
+    public Response<List<CareerTrackEntity>> getCareerMap() {
+        return Response.success(jobDomainService.getCareerMap());
     }
 }

@@ -30,6 +30,18 @@ public class UserPreferenceRepositoryImpl implements IUserPreferenceRepository {
             preferenceDao.insert(po);
             preference.setId(po.getId());
         } else {
+            po.setId(existing.getId());
+            if (po.getJobPreferences() == null)
+                po.setJobPreferences(existing.getJobPreferences());
+            if (po.getSoftSkills() == null)
+                po.setSoftSkills(existing.getSoftSkills());
+            if (po.getMbti() == null)
+                po.setMbti(existing.getMbti());
+            if (po.getHolland() == null)
+                po.setHolland(existing.getHolland());
+            if (po.getBigFive() == null)
+                po.setBigFive(existing.getBigFive());
+            po.setCreateTime(existing.getCreateTime());
             po.setUpdateTime(new Date());
             preferenceDao.updateByUserId(po);
         }

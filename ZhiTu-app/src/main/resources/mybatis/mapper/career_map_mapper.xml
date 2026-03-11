@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dk.infrastructure.dao.ICareerMapDao">
+
+    <resultMap id="TrackMap" type="com.dk.infrastructure.dao.po.CareerTrackPO">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="sort_order" property="sortOrder"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <resultMap id="NodeMap" type="com.dk.infrastructure.dao.po.CareerNodePO">
+        <id column="id" property="id"/>
+        <result column="track_id" property="trackId"/>
+        <result column="code" property="code"/>
+        <result column="title" property="title"/>
+        <result column="sort_order" property="sortOrder"/>
+        <result column="has_transfer" property="hasTransfer"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <resultMap id="TransferMap" type="com.dk.infrastructure.dao.po.CareerTransferOptionPO">
+        <id column="id" property="id"/>
+        <result column="node_id" property="nodeId"/>
+        <result column="target_title" property="targetTitle"/>
+        <result column="target_desc" property="targetDesc"/>
+        <result column="sort_order" property="sortOrder"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="selectAllTracks" resultMap="TrackMap">
+        SELECT * FROM career_track ORDER BY sort_order ASC, id ASC
+    </select>
+    <select id="selectNodesByTrackId" resultMap="NodeMap">
+        SELECT * FROM career_node WHERE track_id = #{trackId} ORDER BY sort_order ASC, id ASC
+    </select>
+    <select id="selectTransferOptionsByNodeId" resultMap="TransferMap">
+        SELECT * FROM career_transfer_option WHERE node_id = #{nodeId} ORDER BY sort_order ASC, id ASC
+    </select>
+</mapper>

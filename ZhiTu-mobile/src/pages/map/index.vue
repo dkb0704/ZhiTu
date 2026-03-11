@@ -6,7 +6,7 @@
 
 		<scroll-view scroll-x class="tab-bar" :show-scrollbar="false">
 			<view
-				v-for="t in CAREER_TRACKS"
+				v-for="t in careerTracks"
 				:key="t.id"
 				class="tab-chip"
 				:class="{ active: currentTrack?.id === t.id }"
@@ -89,6 +89,7 @@
 import { ref, computed, onMounted } from 'vue'
 import CustomTabBar from '@/components/custom-tab-bar/custom-tab-bar.vue'
 import { CAREER_TRACKS, type CareerNode, type CareerTrack } from './career-map-data'
+import { getCareerMapAPI } from '@/api/map'
 
 // ========== 可调参数区（改这里即可，保存后需重新编译/刷新才能看到效果） ==========
 const MAP_TUNING = {
@@ -138,6 +139,8 @@ const mapTuningVars = computed(() => ({
 	'--map-card-margin': MAP_TUNING.cardMargin + 'rpx',
 }))
 
+// 图谱数据：优先使用后端返回，失败或空则用本地预设
+const careerTracks = ref<CareerTrack[]>(CAREER_TRACKS)
 const currentTrack = ref<CareerTrack>(CAREER_TRACKS[0])
 const transferNode = ref<CareerNode | null>(null)
 const transferIdx = ref<number>(-1)
@@ -360,6 +363,18 @@ const getFloatCardStyle = (oi: number) => {
 
 onMounted(() => {
 	uni.hideTabBar()
+	// 接入后端：若有接口则用接口数据，否则用本地 CAREER_TRACKS
+	getCareerMapAPI()
+		.then((data) => {
+			if (data && data.length > 0) {
+				careerTracks.value = data
+				const prevId = currentTrack.value?.id
+				currentTrack.value = data.find((t) => t.id === prevId) || data[0]
+			}
+		})
+		.catch(() => {
+			// 接口未实现或失败时保持使用 career-map-data 预设
+		})
 })
 </script>
 
