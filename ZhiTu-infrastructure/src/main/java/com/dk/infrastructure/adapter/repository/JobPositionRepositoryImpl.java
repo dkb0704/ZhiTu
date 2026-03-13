@@ -61,6 +61,8 @@ public class JobPositionRepositoryImpl implements IJobPositionRepository {
                 .updateDate(po.getUpdateDate())
                 .companyDesc(po.getCompanyDesc())
                 .sourceUrl(po.getSourceUrl())
+                .jobDomain(po.getJobDomain())
+                .jobCategory(po.getJobCategory())
                 .createTime(po.getCreateTime())
                 .build();
     }

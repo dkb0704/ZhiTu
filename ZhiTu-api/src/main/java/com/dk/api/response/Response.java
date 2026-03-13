@@ -28,4 +28,9 @@ public class Response<T> implements Serializable {
     public static <T> Response<T> success(T data) {
         return Response.<T>builder().code("0000").info("成功").data(data).build();
     }
+
+    /** 失败响应 */
+    public static <T> Response<T> fail(String info) {
+        return Response.<T>builder().code("0001").info(info).build();
+    }
 }

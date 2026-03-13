@@ -46,6 +46,10 @@ public class JobPositionEntity {
     private String companyDesc;
     /** 来源地址 */
     private String sourceUrl;
+    /** 岗位领域 */
+    private String jobDomain;
+    /** 岗位类别 */
+    private String jobCategory;
     /** 入库时间 */
     private Date createTime;
 }

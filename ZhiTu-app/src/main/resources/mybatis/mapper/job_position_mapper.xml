@@ -18,6 +18,8 @@
         <result column="update_date" property="updateDate"/>
         <result column="company_desc" property="companyDesc"/>
         <result column="source_url" property="sourceUrl"/>
+        <result column="job_domain" property="jobDomain"/>
+        <result column="job_category" property="jobCategory"/>
         <result column="create_time" property="createTime"/>
     </resultMap>
 
